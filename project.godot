@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 window/vsync/vsync_mode=0
 
+[physics]
+
+2d/physics_engine="Rapier2D"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
