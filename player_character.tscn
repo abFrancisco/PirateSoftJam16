@@ -16,22 +16,23 @@ bounce = 0.1
 radius = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ayno7"]
-size = Vector2(32, 4)
+size = Vector2(28, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rx273"]
-size = Vector2(200, 200)
+size = Vector2(1594, 200)
 
 [node name="PlayerCharacter" type="Node2D"]
 script = ExtResource("1_bi34r")
 
-[node name="SwordBody" type="RigidBody2D" parent="."]
+[node name="Sword" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
+mass = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="SwordBody"]
+[node name="Sprite2D" type="Sprite2D" parent="Sword"]
 position = Vector2(0, -29)
 texture = ExtResource("1_wlfuk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
 position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_qt5ko")
 
@@ -53,41 +54,39 @@ shape = SubResource("CircleShape2D_df1dp")
 position = Vector2(-10, 38)
 node_a = NodePath("../../Knight")
 node_b = NodePath("../../Limbs/ArmLeft")
-disable_collision = false
-softness = 1.0
+softness = 5.0
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="Joints"]
 position = Vector2(-31, 14)
 node_a = NodePath("../../Limbs/ArmLeft")
 node_b = NodePath("../../Limbs/ForearmLeft")
 disable_collision = false
-softness = 1.0
+softness = 5.0
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="Joints"]
 position = Vector2(10, 38)
 node_a = NodePath("../../Knight")
 node_b = NodePath("../../Limbs/ArmRight")
-disable_collision = false
-softness = 1.0
+softness = 5.0
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="Joints"]
 position = Vector2(31, 14)
 node_a = NodePath("../../Limbs/ArmRight")
 node_b = NodePath("../../Limbs/ForearmRight")
 disable_collision = false
-softness = 1.0
+softness = 5.0
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="Joints"]
 node_a = NodePath("../../Limbs/ForearmLeft")
-node_b = NodePath("../../SwordBody")
+node_b = NodePath("../../Sword")
 disable_collision = false
-softness = 1.0
+softness = 5.0
 
 [node name="PinJoint2D6" type="PinJoint2D" parent="Joints"]
 node_a = NodePath("../../Limbs/ForearmRight")
-node_b = NodePath("../../SwordBody")
+node_b = NodePath("../../Sword")
 disable_collision = false
-softness = 1.0
+softness = 5.0
 
 [node name="Limbs" type="Node2D" parent="."]
 
@@ -143,6 +142,7 @@ texture = ExtResource("3_72qwe")
 position = Vector2(11, 306)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-22, 0)
 shape = SubResource("RectangleShape2D_rx273")
 
 [node name="Camera2D" type="Camera2D" parent="."]
