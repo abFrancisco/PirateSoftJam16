@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cursaddti8wgf"]
+[gd_scene load_steps=11 format=3 uid="uid://cursaddti8wgf"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mjdt0"]
-[ext_resource type="Texture2D" uid="uid://d3vvn2o5p7sgg" path="res://icon.svg" id="2_e0d1k"]
+[ext_resource type="Texture2D" uid="uid://d20l83ib7gdii" path="res://knight_limb.svg" id="2_r1v5f"]
 
 [sub_resource type="Curve2D" id="Curve2D_88tb6"]
 _data = {
@@ -15,11 +15,22 @@ _data = {
 }
 point_count = 11
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7hhld"]
-friction = 0.8
-bounce = 0.21
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k3ep"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i16yh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi8ma"]
+size = Vector2(7, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v08cp"]
+size = Vector2(7, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0firs"]
+size = Vector2(7, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sli1"]
+size = Vector2(7, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_043y5"]
+size = Vector2(7, 2)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mjdt0")
@@ -75,13 +86,97 @@ layout_mode = 0
 offset_right = 143.0
 offset_bottom = 65.0
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(426, 79)
-physics_material_override = SubResource("PhysicsMaterial_7hhld")
+[node name="testlimb" type="Node2D" parent="."]
+position = Vector2(402, 149)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_i16yh")
+[node name="pins" type="Node2D" parent="testlimb"]
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_e0d1k")
+[node name="PinJoint2D" type="PinJoint2D" parent="testlimb/pins"]
+position = Vector2(6, 0)
+node_a = NodePath("../../bodies/RigidBody2D")
+node_b = NodePath("../../bodies/RigidBody2D2")
+disable_collision = false
+softness = 2.0
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="testlimb/pins"]
+position = Vector2(11, 0)
+node_a = NodePath("../../bodies/RigidBody2D2")
+node_b = NodePath("../../bodies/RigidBody2D3")
+disable_collision = false
+softness = 2.0
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="testlimb/pins"]
+position = Vector2(16, 0)
+node_a = NodePath("../../bodies/RigidBody2D3")
+node_b = NodePath("../../bodies/RigidBody2D4")
+disable_collision = false
+softness = 2.0
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="testlimb/pins"]
+position = Vector2(21, 0)
+node_a = NodePath("../../bodies/RigidBody2D4")
+node_b = NodePath("../../bodies/RigidBody2D5")
+disable_collision = false
+softness = 2.0
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="testlimb/pins"]
+position = Vector2(1, 0)
+node_a = NodePath("../../bodies/StaticBody2D")
+node_b = NodePath("../../bodies/RigidBody2D")
+
+[node name="bodies" type="Node2D" parent="testlimb"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="testlimb/bodies"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testlimb/bodies/StaticBody2D"]
+position = Vector2(-8, -1)
+shape = SubResource("RectangleShape2D_1k3ep")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="testlimb/bodies"]
+
+[node name="Sprite2D" type="Sprite2D" parent="testlimb/bodies/RigidBody2D"]
+scale = Vector2(0.22, 1)
+texture = ExtResource("2_r1v5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testlimb/bodies/RigidBody2D"]
+shape = SubResource("RectangleShape2D_qi8ma")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="testlimb/bodies"]
+position = Vector2(5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="testlimb/bodies/RigidBody2D2"]
+scale = Vector2(0.22, 1)
+texture = ExtResource("2_r1v5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testlimb/bodies/RigidBody2D2"]
+shape = SubResource("RectangleShape2D_v08cp")
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="testlimb/bodies"]
+position = Vector2(10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="testlimb/bodies/RigidBody2D3"]
+scale = Vector2(0.22, 1)
+texture = ExtResource("2_r1v5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testlimb/bodies/RigidBody2D3"]
+shape = SubResource("RectangleShape2D_0firs")
+
+[node name="RigidBody2D4" type="RigidBody2D" parent="testlimb/bodies"]
+position = Vector2(15, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="testlimb/bodies/RigidBody2D4"]
+scale = Vector2(0.22, 1)
+texture = ExtResource("2_r1v5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testlimb/bodies/RigidBody2D4"]
+shape = SubResource("RectangleShape2D_1sli1")
+
+[node name="RigidBody2D5" type="RigidBody2D" parent="testlimb/bodies"]
+position = Vector2(20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="testlimb/bodies/RigidBody2D5"]
+scale = Vector2(0.22, 1)
+texture = ExtResource("2_r1v5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testlimb/bodies/RigidBody2D5"]
+shape = SubResource("RectangleShape2D_043y5")
