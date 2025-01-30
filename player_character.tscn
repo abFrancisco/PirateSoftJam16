@@ -53,34 +53,40 @@ shape = SubResource("CircleShape2D_df1dp")
 position = Vector2(-10, 38)
 node_a = NodePath("../../Knight")
 node_b = NodePath("../../Limbs/ArmLeft")
+disable_collision = false
 softness = 1.0
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="Joints"]
 position = Vector2(-31, 14)
 node_a = NodePath("../../Limbs/ArmLeft")
 node_b = NodePath("../../Limbs/ForearmLeft")
+disable_collision = false
 softness = 1.0
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="Joints"]
 position = Vector2(10, 38)
 node_a = NodePath("../../Knight")
 node_b = NodePath("../../Limbs/ArmRight")
+disable_collision = false
 softness = 1.0
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="Joints"]
 position = Vector2(31, 14)
 node_a = NodePath("../../Limbs/ArmRight")
 node_b = NodePath("../../Limbs/ForearmRight")
+disable_collision = false
 softness = 1.0
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="Joints"]
 node_a = NodePath("../../Limbs/ForearmLeft")
 node_b = NodePath("../../SwordBody")
+disable_collision = false
 softness = 1.0
 
 [node name="PinJoint2D6" type="PinJoint2D" parent="Joints"]
 node_a = NodePath("../../Limbs/ForearmRight")
 node_b = NodePath("../../SwordBody")
+disable_collision = false
 softness = 1.0
 
 [node name="Limbs" type="Node2D" parent="."]
