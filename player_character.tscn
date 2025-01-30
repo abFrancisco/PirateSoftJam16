@@ -1,7 +1,143 @@
-[gd_scene format=3 uid="uid://b4gagccfpgp4x"]
+[gd_scene load_steps=10 format=3 uid="uid://vtnx26odpn7o"]
 
-[node name="PlayerCharacter" type="RigidBody2D"]
+[ext_resource type="Script" path="res://player_character.gd" id="1_bi34r"]
+[ext_resource type="Texture2D" uid="uid://dk7ebjirc6s0k" path="res://sword.svg" id="1_wlfuk"]
+[ext_resource type="Texture2D" uid="uid://cwqdk6henihgu" path="res://knight_body.svg" id="2_v1spn"]
+[ext_resource type="Texture2D" uid="uid://d20l83ib7gdii" path="res://knight_limb.svg" id="3_72qwe"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt5ko"]
+size = Vector2(12, 68)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fl6ab"]
+friction = 0.95
+bounce = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_df1dp"]
+radius = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayno7"]
+size = Vector2(32, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx273"]
+size = Vector2(200, 200)
+
+[node name="PlayerCharacter" type="Node2D"]
+script = ExtResource("1_bi34r")
+
+[node name="SwordBody" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SwordBody"]
+position = Vector2(0, -29)
+texture = ExtResource("1_wlfuk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordBody"]
+position = Vector2(0, -27.5)
+shape = SubResource("RectangleShape2D_qt5ko")
+
+[node name="Knight" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 44)
+mass = 50.0
+physics_material_override = SubResource("PhysicsMaterial_fl6ab")
+
+[node name="Sprite2D" type="Sprite2D" parent="Knight"]
+texture = ExtResource("2_v1spn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Knight"]
+shape = SubResource("CircleShape2D_df1dp")
+
+[node name="Joints" type="Node2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Joints"]
+position = Vector2(-10, 38)
+node_a = NodePath("../../Knight")
+node_b = NodePath("../../Limbs/ArmLeft")
+softness = 1.0
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Joints"]
+position = Vector2(-31, 14)
+node_a = NodePath("../../Limbs/ArmLeft")
+node_b = NodePath("../../Limbs/ForearmLeft")
+softness = 1.0
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Joints"]
+position = Vector2(10, 38)
+node_a = NodePath("../../Knight")
+node_b = NodePath("../../Limbs/ArmRight")
+softness = 1.0
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Joints"]
+position = Vector2(31, 14)
+node_a = NodePath("../../Limbs/ArmRight")
+node_b = NodePath("../../Limbs/ForearmRight")
+softness = 1.0
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Joints"]
+node_a = NodePath("../../Limbs/ForearmLeft")
+node_b = NodePath("../../SwordBody")
+softness = 1.0
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="Joints"]
+node_a = NodePath("../../Limbs/ForearmRight")
+node_b = NodePath("../../SwordBody")
+softness = 1.0
+
+[node name="Limbs" type="Node2D" parent="."]
+
+[node name="ArmLeft" type="RigidBody2D" parent="Limbs"]
+position = Vector2(-10, 38)
+rotation = -2.29064
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/ArmLeft"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_ayno7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Limbs/ArmLeft"]
+z_index = -1
+texture = ExtResource("3_72qwe")
+
+[node name="ForearmLeft" type="RigidBody2D" parent="Limbs"]
+position = Vector2(-31, 14)
+rotation = -0.422468
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/ForearmLeft"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_ayno7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Limbs/ForearmLeft"]
+z_index = -1
+texture = ExtResource("3_72qwe")
+
+[node name="ArmRight" type="RigidBody2D" parent="Limbs"]
+position = Vector2(10, 38)
+rotation = -0.851721
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/ArmRight"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_ayno7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Limbs/ArmRight"]
+z_index = -1
+texture = ExtResource("3_72qwe")
+
+[node name="ForearmRight" type="RigidBody2D" parent="Limbs"]
+position = Vector2(31, 14)
+rotation = -2.71922
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limbs/ForearmRight"]
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_ayno7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Limbs/ForearmRight"]
+z_index = -1
+texture = ExtResource("3_72qwe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(11, 306)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_rx273")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-4, 115)

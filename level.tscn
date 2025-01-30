@@ -25,6 +25,18 @@ rotation = -0.0310392
 position = Vector2(358, 316)
 rotation = 0.0342426
 
+[node name="Rect_1x5" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(419, 281)
+rotation = 0.543808
+
+[node name="Rect_1x6" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(455, 244)
+rotation = 0.88201
+
+[node name="Rect_1x7" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(492, 179)
+rotation = 0.00857914
+
 [node name="TerrainGen" type="Node2D" parent="."]
 unique_name_in_owner = true
 

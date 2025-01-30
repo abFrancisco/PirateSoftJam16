@@ -1,5 +1,9 @@
 extends Node2D
 
+#replacing terrain_draw from only drawing polygons
+#to drawing specifically circle and rect shapes,
+#including the collisions, might improve performance
+#a bit
 var terrain_draw : Array[PackedVector2Array]
 var tessellate_degrees : float = 1.0
 var max_stages : int = 5
