@@ -1,16 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://vtnx26odpn7o"]
+[gd_scene load_steps=11 format=3 uid="uid://vtnx26odpn7o"]
 
 [ext_resource type="Script" path="res://player_character.gd" id="1_bi34r"]
 [ext_resource type="Texture2D" uid="uid://dk7ebjirc6s0k" path="res://sword.svg" id="1_wlfuk"]
 [ext_resource type="Texture2D" uid="uid://cwqdk6henihgu" path="res://knight_body.svg" id="2_v1spn"]
 [ext_resource type="Texture2D" uid="uid://d20l83ib7gdii" path="res://knight_limb.svg" id="3_72qwe"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cd43v"]
+bounce = 0.5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qt5ko"]
 size = Vector2(12, 68)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fl6ab"]
 friction = 0.95
-bounce = 0.1
+bounce = 0.4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_df1dp"]
 radius = 22.0
@@ -26,7 +29,8 @@ script = ExtResource("1_bi34r")
 
 [node name="Sword" type="RigidBody2D" parent="."]
 unique_name_in_owner = true
-mass = 10.0
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_cd43v")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sword"]
 position = Vector2(0, -29)
@@ -87,6 +91,13 @@ node_a = NodePath("../../Limbs/ForearmRight")
 node_b = NodePath("../../Sword")
 disable_collision = false
 softness = 5.0
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="Joints"]
+position = Vector2(0, 44)
+rotation = 3.14159
+node_a = NodePath("../../Knight")
+node_b = NodePath("../../Sword")
+rest_length = 50.0
 
 [node name="Limbs" type="Node2D" parent="."]
 
