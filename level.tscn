@@ -1,56 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://cursaddti8wgf"]
+[gd_scene load_steps=3 format=3 uid="uid://m4uvdxndhfhj"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mjdt0"]
-
-[sub_resource type="Curve2D" id="Curve2D_88tb6"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 288, 59, 0, 0, 0, 0, 424, 63, 0, 0, 0, 0, 410, 179, 0, 0, 0, 0, 267, 258, 0, 0, 0, 0, 171, 213, 0, 0, 0, 0, 288, 59)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_7fw8v"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 392, 103, 0, 0, 0, 0, 415, 104, 0, 0, 0, 0, 396, 119, 0, 0, 0, 0, 399, 137, 0, 0, 0, 0, 381, 121, 0, 0, 0, 0, 361, 136, 0, 0, 0, 0, 369, 119, 0, 0, 0, 0, 357, 103, 0, 0, 0, 0, 375, 103, 0, 0, 0, 0, 385, 84, 0, 0, 0, 0, 392, 103)
-}
-point_count = 11
+[ext_resource type="PackedScene" uid="uid://b44dpg2n46iq4" path="res://building_blocks/rect_1x1.tscn" id="2_fu85l"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mjdt0")
 
-[node name="Terrain" type="Node2D" parent="."]
+[node name="TerrainEdit" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Path2D" type="Path2D" parent="Terrain"]
-position = Vector2(294, 141)
-curve = SubResource("Curve2D_88tb6")
+[node name="Rect_1x1" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(173, 312)
+rotation = 0.0343807
 
-[node name="Path2D3" type="Path2D" parent="Terrain"]
-position = Vector2(535, 307)
-curve = SubResource("Curve2D_88tb6")
+[node name="Rect_1x2" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(236, 313)
+rotation = 0.00239378
 
-[node name="Path2D4" type="Path2D" parent="Terrain"]
-position = Vector2(131, 425)
-curve = SubResource("Curve2D_88tb6")
+[node name="Rect_1x3" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(298, 311)
+rotation = -0.0310392
 
-[node name="Path2D5" type="Path2D" parent="Terrain"]
-position = Vector2(4, 249)
-curve = SubResource("Curve2D_88tb6")
+[node name="Rect_1x4" parent="TerrainEdit" instance=ExtResource("2_fu85l")]
+position = Vector2(358, 316)
+rotation = 0.0342426
 
-[node name="Path2D6" type="Path2D" parent="Terrain"]
-position = Vector2(122, 55)
-curve = SubResource("Curve2D_7fw8v")
-
-[node name="Path2D7" type="Path2D" parent="Terrain"]
-position = Vector2(34, 87)
-curve = SubResource("Curve2D_7fw8v")
-
-[node name="Path2D8" type="Path2D" parent="Terrain"]
-position = Vector2(405, 187)
-curve = SubResource("Curve2D_7fw8v")
+[node name="TerrainGen" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 anchor_mode = 0
+zoom = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
